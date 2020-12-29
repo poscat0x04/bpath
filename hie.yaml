@@ -1,0 +1,6 @@
+cradle:
+  cabal:
+    - path: "./src"
+      component: "lib:bpath"
+    - path: "./test"
+      component: "test:bpath-test"
