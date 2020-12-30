@@ -78,15 +78,11 @@ fromAbs (fmap fromPathSeg . unPath -> l)
   | Empty <- l = "/"
   | x :<| xs <- l = "/" <> foldl' (\p s -> p <> "/" <> s) x xs
 
-hush :: Either a b -> Maybe b
-hush (Left _) = Nothing
-hush (Right b) = Just b
-
 parseRel :: ByteString -> Maybe (Path 'Rel)
-parseRel = hush . runParser relpath ""
+parseRel = parseMaybe relpath
 
 parseAbs :: ByteString -> Maybe (Path 'Abs)
-parseAbs = hush . runParser abspath ""
+parseAbs = parseMaybe abspath
 
 mkAbs :: ByteString -> Q Exp
 mkAbs = lift . fromMaybe (error "illformed absolute path") . parseAbs
