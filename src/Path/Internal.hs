@@ -132,3 +132,6 @@ filename :: Path t -> Path 'Rel
 filename (Path Empty) = Path Empty
 filename (Path (Empty :|> x)) = Path $ pure x
 filename (Path (_ :<| xs)) = filename $ Path xs
+
+unsafeToPath :: [ByteString] -> Path t
+unsafeToPath = Path . fromList . fmap PathSeg

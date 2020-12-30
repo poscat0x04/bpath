@@ -21,6 +21,9 @@ module Path
     mkRel,
     absp,
     relp,
+
+    -- * Unsafe actions
+    unsafeToPath,
   )
 where
 
